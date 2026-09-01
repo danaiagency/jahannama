@@ -1,5 +1,5 @@
 import type { Product } from "@/types";
-import { unsplash, IMG } from "./images";
+import { productImage } from "./images";
 
 const woodBoth = ["توسکا", "راش"];
 
@@ -23,7 +23,15 @@ const sharedSpecsTable = {
   leadTime: "۱۰ تا ۱۵ روز کاری",
 };
 
-export const products: Product[] = [
+/**
+ * محصولات بدون فیلد images تعریف می‌شوند؛ عکس‌ها در پایین همین فایل به‌صورت خودکار
+ * از روی slug ساخته می‌شوند. برای افزودن/جایگزینی عکس یک محصول، کافی است فایل را با
+ * نام {slug}-1.jpg و {slug}-2.jpg در public/images/products/ قرار دهید — هیچ کدی
+ * نیاز به تغییر ندارد.
+ */
+type RawProduct = Omit<Product, "images">;
+
+const rawProducts: RawProduct[] = [
   // مبل‌های اصلی
   {
     id: "p01",
@@ -33,7 +41,6 @@ export const products: Product[] = [
     price: 85_000_000,
     inStock: true,
     isBestSeller: true,
-    images: [unsplash(IMG.sofaCozy, 1000), unsplash(IMG.sofaWide, 1000)],
     colors: fabricColors,
     woodOptions: woodBoth,
     description:
@@ -48,7 +55,6 @@ export const products: Product[] = [
     price: 95_000_000,
     inStock: true,
     isNew: true,
-    images: [unsplash(IMG.sofaGray, 1000), unsplash(IMG.sofaCozy, 1000)],
     colors: fabricColors,
     woodOptions: woodBoth,
     description:
@@ -63,7 +69,6 @@ export const products: Product[] = [
     price: 90_000_000,
     inStock: true,
     isBestSeller: true,
-    images: [unsplash(IMG.sofaWide, 1000), unsplash(IMG.sofaCurved, 1000)],
     colors: fabricColors,
     woodOptions: woodBoth,
     description:
@@ -77,7 +82,6 @@ export const products: Product[] = [
     category: "mobl-l",
     price: 90_000_000,
     inStock: true,
-    images: [unsplash(IMG.sofaCurved, 1000), unsplash(IMG.sofaWide, 1000)],
     colors: fabricColors,
     woodOptions: woodBoth,
     description:
@@ -92,7 +96,6 @@ export const products: Product[] = [
     price: 95_000_000,
     inStock: true,
     isNew: true,
-    images: [unsplash(IMG.sofaCozy, 1000), unsplash(IMG.sofaGray, 1000)],
     colors: fabricColors,
     woodOptions: woodBoth,
     description: "مبل پیکو با نشیمن نرم و طراحی به‌روز، از جدیدترین اضافه‌شده‌های فروشگاه است.",
@@ -105,7 +108,6 @@ export const products: Product[] = [
     category: "mobl-rahati",
     price: 65_000_000,
     inStock: true,
-    images: [unsplash(IMG.sofaGray, 1000), unsplash(IMG.sofaCozy, 1000)],
     colors: fabricColors,
     woodOptions: woodBoth,
     description:
@@ -115,14 +117,13 @@ export const products: Product[] = [
 
   // مبل تک — همه هم‌قیمت
   ...["لوکا", "روبی", "کیانا", "دیوا", "آلما"].map(
-    (name, i): Product => ({
+    (name, i): RawProduct => ({
       id: `p1${i}`,
       slug: `mobl-tak-${["luka", "roobi", "kiana", "diva", "alma"][i]}`,
       title: `مبل تک ${name}`,
       category: "mobl-tak",
       price: 17_000_000,
       inStock: true,
-      images: [unsplash(IMG.armchair, 1000), unsplash(IMG.sofaCurved, 1000)],
       colors: fabricColors,
       woodOptions: woodBoth,
       description: `صندلی تک‌نفره ${name} برای گوشه مطالعه یا کنار پنجره، با جنس چوب و رنگ دلخواه شما.`,
@@ -132,14 +133,13 @@ export const products: Product[] = [
 
   // مبل تک راحتی — همه هم‌قیمت
   ...["سرن", "نوا"].map(
-    (name, i): Product => ({
+    (name, i): RawProduct => ({
       id: `p2${i}`,
       slug: `mobl-tak-rahati-${["seren", "nova"][i]}`,
       title: `مبل تک راحتی ${name}`,
       category: "mobl-tak-rahati",
       price: 25_000_000,
       inStock: true,
-      images: [unsplash(IMG.sofaGray, 1000), unsplash(IMG.armchair, 1000)],
       colors: fabricColors,
       woodOptions: woodBoth,
       description: `مبل تک راحتی ${name} با نشیمن عمیق‌تر نسبت به مدل‌های تک معمولی، برای استراحت طولانی‌تر مناسب است.`,
@@ -156,7 +156,6 @@ export const products: Product[] = [
     price: 13_250_000,
     inStock: true,
     woodOptions: woodBoth,
-    images: [unsplash(IMG.diningTable, 1000), unsplash(IMG.sofaCozy, 1000)],
     description: "ست میز ناهارخوری ۴ نفره، مناسب آشپزخانه یا پذیرایی‌های کوچک.",
     specs: { dimensions: "۱۲۰ × ۸۰ × ۷۵ سانتی‌متر", ...sharedSpecsTable },
   },
@@ -168,7 +167,6 @@ export const products: Product[] = [
     price: 16_250_000,
     inStock: true,
     woodOptions: woodBoth,
-    images: [unsplash(IMG.diningTable, 1000), unsplash(IMG.sofaGray, 1000)],
     description: "ست میز ناهارخوری ۶ نفره، انتخابی رایج برای خانواده‌های متوسط.",
     specs: { dimensions: "۱۶۰ × ۹۰ × ۷۵ سانتی‌متر", ...sharedSpecsTable },
   },
@@ -180,7 +178,6 @@ export const products: Product[] = [
     price: 18_000_000,
     inStock: true,
     woodOptions: woodBoth,
-    images: [unsplash(IMG.diningTable, 1000), unsplash(IMG.sofaCurved, 1000)],
     description: "ست میز ناهارخوری ۸ نفره، مناسب پذیرایی‌های خانوادگی بزرگ‌تر.",
     specs: { dimensions: "۲۰۰ × ۱۰۰ × ۷۵ سانتی‌متر", ...sharedSpecsTable },
   },
@@ -192,11 +189,15 @@ export const products: Product[] = [
     price: 23_000_000,
     inStock: true,
     woodOptions: woodBoth,
-    images: [unsplash(IMG.diningTable, 1000), unsplash(IMG.sofaWide, 1000)],
     description: "ست میز ناهارخوری ۱۰ نفره، مناسب سالن‌های پذیرایی بزرگ و جمع‌های خانوادگی پرتعداد.",
     specs: { dimensions: "۲۴۰ × ۱۰۵ × ۷۵ سانتی‌متر", ...sharedSpecsTable },
   },
 ];
+
+export const products: Product[] = rawProducts.map((p) => ({
+  ...p,
+  images: [productImage(p.slug, 1), productImage(p.slug, 2)],
+}));
 
 export function getProductBySlug(slug: string): Product | undefined {
   return products.find((p) => p.slug === slug);

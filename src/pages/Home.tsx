@@ -8,7 +8,7 @@ import LazyImage from "@/components/ui/LazyImage";
 import { categories } from "@/data/categories";
 import { products } from "@/data/products";
 import { formatToman } from "@/utils/format";
-import { unsplash, IMG } from "@/data/images";
+import { heroImage } from "@/data/images";
 
 const bestSellers = products.filter((p) => p.isBestSeller).slice(0, 4);
 const newArrivals = products.filter((p) => p.isNew).slice(0, 4);
@@ -66,7 +66,7 @@ export default function Home() {
             className="relative"
           >
             <LazyImage
-              src={unsplash(IMG.heroLiving, 1200)}
+              src={heroImage()}
               alt="فضای نشیمن مدرن با مبلمان جهان‌نما"
               ratio="aspect-[4/5] sm:aspect-[5/4]"
               className="rounded-3xl"

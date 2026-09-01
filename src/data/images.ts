@@ -1,18 +1,38 @@
 /**
- * شناسه تصاویر Unsplash که صحت آن‌ها بررسی شده است.
- * برای جلوگیری از تصویر خراب، فقط از همین مجموعه در سراسر سایت استفاده می‌شود.
+ * تصاویر پروژه به‌طور کامل محلی (public/images) مدیریت می‌شوند — Unsplash حذف شده است.
+ *
+ * قانون نام‌گذاری (برای اضافه/جایگزینی عکس، فقط فایل را با همین اسم در پوشه بگذارید،
+ * هیچ کدی نیازی به تغییر ندارد):
+ *
+ *   عکس محصول:      public/images/products/{slug}-1.jpg  و  {slug}-2.jpg
+ *   عکس دسته‌بندی:  public/images/categories/{slug}.jpg
+ *   عکس Hero:        public/images/hero.jpg
+ *   عکس درباره‌ما:   public/images/about.jpg
+ *
+ * تا وقتی فایل واقعی آپلود نشده، LazyImage به‌صورت خودکار placeholder.svg را نشان می‌دهد
+ * (نگاه کنید به onError در src/components/ui/LazyImage.tsx) — هرگز آیکون عکس خراب دیده نمی‌شود.
  */
-export const IMG = {
-  heroLiving: "1758448511322-8bfc73daf606",
-  sofaCozy: "1756302555654-5e413da2d1b8",
-  sofaGray: "1757862351841-c6f7ac0b0201",
-  sofaCurved: "1761602866012-ae9f888255dc",
-  sofaWide: "1758448511322-8bfc73daf606",
-  diningTable: "1758977403403-c51ef509e788",
-  armchair: "1584467331225-a18e17c70b38",
-} as const;
 
-/** ساخت URL بهینه Unsplash با عرض و کیفیت مشخص برای Lazy Loading و Performance بهتر. */
-export function unsplash(id: string, width = 800, quality = 80): string {
-  return `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${width}&q=${quality}`;
+function withBase(path: string): string {
+  return `${import.meta.env.BASE_URL}images/${path}`;
+}
+
+export function heroImage(): string {
+  return withBase("hero.jpg");
+}
+
+export function aboutImage(): string {
+  return withBase("about.jpg");
+}
+
+export function productImage(slug: string, index: 1 | 2): string {
+  return withBase(`products/${slug}-${index}.jpg`);
+}
+
+export function categoryImage(slug: string): string {
+  return withBase(`categories/${slug}.jpg`);
+}
+
+export function placeholderImage(): string {
+  return withBase("placeholder.svg");
 }

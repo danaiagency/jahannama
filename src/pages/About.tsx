@@ -1,5 +1,5 @@
 import LazyImage from "@/components/ui/LazyImage";
-import { unsplash, IMG } from "@/data/images";
+import { aboutImage } from "@/data/images";
 import { siteConfig } from "@/config/site";
 
 export default function About() {
@@ -26,7 +26,7 @@ export default function About() {
             </p>
           </div>
           <LazyImage
-            src={unsplash(IMG.sofaCozy, 1000)}
+            src={aboutImage()}
             alt="کارگاه طراحی مبلمان جهان‌نما"
             ratio="aspect-[4/5]"
             className="rounded-3xl"

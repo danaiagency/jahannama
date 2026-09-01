@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import { placeholderImage } from "@/data/images";
+
 export default function LazyImage({
   src,
   alt,
@@ -11,15 +14,22 @@ export default function LazyImage({
   ratio?: string;
   sizes?: string;
 }) {
+  const [errored, setErrored] = useState(false);
+
+  useEffect(() => {
+    setErrored(false);
+  }, [src]);
+
   return (
     <div className={`overflow-hidden bg-surface-soft ${ratio} ${className}`}>
       <img
-        src={src}
+        src={errored ? placeholderImage() : src}
         alt={alt}
         loading="lazy"
         decoding="async"
         sizes={sizes}
-        className="h-full w-full object-cover"
+        onError={() => setErrored(true)}
+        className={`h-full w-full ${errored ? "object-contain p-8 opacity-40" : "object-cover"}`}
       />
     </div>
   );

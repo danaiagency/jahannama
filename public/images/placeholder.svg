@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="#F4F0E9"/>
+  <path d="M50 120 v-25 a15 15 0 0 1 15-15 h70 a15 15 0 0 1 15 15 v25"
+        fill="none" stroke="#A9793C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="42" y="118" width="116" height="28" rx="8" fill="none" stroke="#A9793C" stroke-width="5"/>
+  <line x1="50" y1="146" x2="50" y2="158" stroke="#A9793C" stroke-width="5" stroke-linecap="round"/>
+  <line x1="150" y1="146" x2="150" y2="158" stroke="#A9793C" stroke-width="5" stroke-linecap="round"/>
+  <text x="100" y="178" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#A49A8D">
+    تصویر به‌زودی
+  </text>
+</svg>
