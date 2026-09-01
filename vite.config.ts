@@ -4,7 +4,10 @@ import { defineConfig } from 'vite'
 import path from 'path'
 
 export default defineConfig({
+  base: '/jahannama/',
+  
   plugins: [react(), tailwindcss()],
+
   resolve: {
     alias: {
       '@': path.resolve(import.meta.dirname, './src'),
