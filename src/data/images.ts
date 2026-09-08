@@ -33,6 +33,10 @@ export function categoryImage(slug: string): string {
   return withBase(`categories/${slug}.jpg`);
 }
 
+export function logoImage(dark = false): string {
+  return withBase(dark ? "logo-white.png" : "logo.png");
+}
+
 export function placeholderImage(): string {
   return withBase("placeholder.svg");
 }
