@@ -22,8 +22,9 @@ export default function Checkout() {
 
   const [customer, setCustomer] = useState<CustomerInfo>(emptyCustomer);
   const [errors, setErrors] = useState<Partial<Record<keyof CustomerInfo, string>>>({});
+  const [submitting, setSubmitting] = useState(false);
 
-  if (items.length === 0) return <Navigate to="/cart" replace />;
+  if (items.length === 0 && !submitting) return <Navigate to="/cart" replace />;
 
   function validate() {
     const next: typeof errors = {};
@@ -37,6 +38,7 @@ export default function Checkout() {
 
   function handleSubmitOrder() {
     if (!validate()) return;
+    setSubmitting(true);
     const order = {
       orderNumber: generateOrderNumber(),
       status: "submitted" as const,
