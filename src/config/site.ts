@@ -1,9 +1,6 @@
 /**
- * تنظیمات سراسری سایت — اطلاعات تماس، پرداخت و لینک پیام‌رسان‌ها.
+ * تنظیمات سراسری سایت — اطلاعات تماس و لینک پیام‌رسان‌ها.
  * هیچ Component نباید مستقیماً این مقادیر را Hardcode کند؛ همیشه از اینجا Import شود.
- *
- * نکته: شماره کارت و شبا هنوز Demo هستند — پیش از انتشار واقعی با اطلاعات
- * بانکی واقعی جایگزین شوند.
  */
 
 export const siteConfig = {
@@ -20,18 +17,13 @@ export const siteConfig = {
     email: "info@jahannama-demo.ir",
   },
 
-  // شماره کارت و شبا فعلاً Demo هستند — پیش از انتشار واقعی جایگزین شوند.
-  bankTransfer: {
-    accountHolder: "مبلمان جهان‌نما",
-    cardNumber: "6037-XXXX-XXXX-1234",
-    shabaNumber: "IRXX XXXX XXXX XXXX XXXX XXXX XX",
-  },
-
+  // برای ارسال درخواست سفارش — اکانت شخصی (نه کانال)، چون کانال قابلیت دریافت پیام ندارد.
   messengers: {
     whatsapp: "https://wa.me/989128516383",
-    rubika: "https://rubika.ir/jahan_nama_mobl2026",
+    rubika: "https://rubika.ir/Magic1234567",
   },
 
+  // برای دنبال‌کردن/معرفی برند — کانال عمومی روبیکا.
   social: {
     instagram: "https://www.instagram.com/jahan_nama_mobl2026",
     whatsapp: "https://wa.me/989128516383",

@@ -48,7 +48,7 @@ export interface CartItem {
   quantity: number;
 }
 
-export type OrderStatus = "pending_payment";
+export type OrderStatus = "submitted";
 
 export interface CustomerInfo {
   fullName: string;

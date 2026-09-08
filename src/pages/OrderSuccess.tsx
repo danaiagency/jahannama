@@ -1,10 +1,9 @@
 import { useMemo, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
-import { Clock3, Copy, PackageCheck } from "lucide-react";
+import { Copy, Send } from "lucide-react";
 import { useOrderStore } from "@/store/order";
 import { useToastStore } from "@/store/toast";
 import { siteConfig } from "@/config/site";
-import { formatToman } from "@/utils/format";
 import { buildOrderMessage } from "@/utils/order";
 
 export default function OrderSuccess() {
@@ -32,38 +31,22 @@ export default function OrderSuccess() {
 
   return (
     <>
-      <title>سفارش شما ثبت شد | مبلمان جهان‌نما</title>
+      <title>درخواست شما ثبت شد | مبلمان جهان‌نما</title>
 
       <div className="container-page flex max-w-lg flex-col items-center py-16 text-center md:py-24">
         <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gold-tint">
-          <PackageCheck className="h-7 w-7 text-gold-dark" strokeWidth={1.75} />
+          <Send className="h-7 w-7 text-gold-dark" strokeWidth={1.75} />
         </div>
 
-        <h1 className="mt-6 text-2xl font-bold text-ink md:text-3xl">سفارش شما ثبت شد</h1>
+        <h1 className="mt-6 text-2xl font-bold text-ink md:text-3xl">درخواست شما آماده ارسال است</h1>
 
         <p className="mt-4 text-sm leading-8 text-ink-soft">
-          سفارش شما با موفقیت در سیستم ثبت شد. برای ارسال درخواست به کارشناس فروش، یکی از
-          پیام‌رسان‌های زیر را انتخاب کنید؛ سپس مبلغ سفارش را به شماره کارت اعلام‌شده واریز کرده و
-          تصویر رسید پرداخت را در همان مکالمه ارسال کنید.
+          یکی از پیام‌رسان‌های زیر را انتخاب کنید تا خلاصه سفارش برای کارشناس فروش ارسال شود.
+          ایشان در اسرع وقت جهت تکمیل فرآیند خرید (قیمت نهایی و روش پرداخت) با شما تماس می‌گیرند.
         </p>
 
         <div className="tnum mt-6 rounded-xl bg-surface-soft px-5 py-3 text-sm font-medium text-ink">
           شماره سفارش: #{order.orderNumber}
-        </div>
-
-        <div className="mt-3 tnum text-sm text-ink-soft">
-          مبلغ سفارش: {formatToman(order.total)}
-        </div>
-
-        <div className="mt-8 flex w-full items-start gap-3 rounded-2xl border border-amber-tint bg-amber-tint p-4 text-right">
-          <Clock3 className="mt-0.5 h-5 w-5 shrink-0 text-amber" strokeWidth={1.75} />
-          <div>
-            <p className="text-sm font-semibold text-amber">در انتظار تأیید پرداخت</p>
-            <p className="mt-1 text-xs leading-6 text-ink-soft">
-              پس از ارسال درخواست و رسید پرداخت، کارشناسان ما بررسی می‌کنند. پس از تأیید، سفارش
-              شما نهایی خواهد شد.
-            </p>
-          </div>
         </div>
 
         <p className="mt-8 w-full text-right text-xs font-medium text-ink-faint">
@@ -107,7 +90,8 @@ export default function OrderSuccess() {
 
         {messengerNotice && (
           <p className="mt-4 text-xs text-ink-soft">
-            پس از ارسال پیام و رسید پرداخت، منتظر تأیید کارشناسان ما باشید.
+            درخواست شما برای کارشناس فروش ارسال شد. ایشان در اسرع وقت جهت تکمیل فرآیند خرید با شما
+            تماس می‌گیرند.
           </p>
         )}
 
